@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Ollama 网页翻译",
+  "version": "1.0",
+  "description": "调用本地 Ollama qwen3.5:4b 翻译页面所有 p li 标签文本",
+  "permissions": ["activeTab", "storage"],
+  "host_permissions": ["http://localhost:11434/*", "http://127.0.0.1:11434/*"],
+  "action": {
+    "default_title": "开始翻译"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
