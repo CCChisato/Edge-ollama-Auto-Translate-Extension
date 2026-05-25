@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ollama 翻译设置</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      width: 280px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: #1a1a2e;
+      color: #e0e0e0;
+      padding: 16px;
+    }
+    h2 {
+      font-size: 16px;
+      text-align: center;
+      margin-bottom: 16px;
+      color: #ffa0f7;
+      font-weight: 600;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 10px 0;
+      margin-bottom: 8px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, opacity 0.2s;
+      text-align: center;
+    }
+    .btn:active {
+      opacity: 0.7;
+    }
+    .btn-primary {
+      background: #7c3aed;
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: #6d28d9;
+    }
+    .btn-primary.active {
+      background: #10b981;
+    }
+    .btn-secondary {
+      background: #374151;
+      color: #e0e0e0;
+    }
+    .btn-secondary:hover {
+      background: #4b5563;
+    }
+    .btn-secondary.active {
+      background: #10b981;
+    }
+    .btn-danger {
+      background: #ef4444;
+      color: #fff;
+    }
+    .btn-danger:hover {
+      background: #dc2626;
+    }
+    .btn-danger.active {
+      background: #10b981;
+    }
+    .btn-config {
+      background: #1e3a5f;
+      color: #93c5fd;
+    }
+    .btn-config:hover {
+      background: #1e40af;
+    }
+    .config-section {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #374151;
+    }
+    .config-section.hidden {
+      display: none;
+    }
+    .config-item {
+      margin-bottom: 10px;
+    }
+    .config-item label {
+      display: block;
+      font-size: 12px;
+      color: #9ca3af;
+      margin-bottom: 4px;
+    }
+    .config-item input {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #4b5563;
+      border-radius: 6px;
+      background: #111827;
+      color: #e0e0e0;
+      font-size: 13px;
+      outline: none;
+    }
+    .config-item input:focus {
+      border-color: #7c3aed;
+    }
+    .config-actions {
+      display: flex;
+      gap: 8px;
+    }
+    .config-actions .btn {
+      flex: 1;
+      padding: 8px 0;
+      font-size: 13px;
+      margin-bottom: 0;
+    }
+    .btn-save {
+      background: #10b981;
+      color: #fff;
+    }
+    .btn-save:hover {
+      background: #059669;
+    }
+    .btn-cancel {
+      background: #4b5563;
+      color: #e0e0e0;
+    }
+    .btn-cancel:hover {
+      background: #6b7280;
+    }
+    .status {
+      text-align: center;
+      font-size: 12px;
+      margin-top: 8px;
+      min-height: 18px;
+      color: #10b981;
+    }
+    .status.error {
+      color: #ef4444;
+    }
+    .separator {
+      height: 1px;
+      background: #374151;
+      margin: 8px 0;
+    }
+  </style>
+</head>
+<body>
+  <h2>⚡ Ollama 翻译</h2>
+
+  <button id="btnTranslate" class="btn btn-primary">▶ 开始翻译</button>
+  <button id="btnAuto" class="btn btn-secondary">🔄 自动翻译：关闭</button>
+
+  <div class="separator"></div>
+
+  <button id="btnConfig" class="btn btn-config">⚙ 设置 Ollama 参数</button>
+
+  <div id="configSection" class="config-section hidden">
+    <div class="config-item">
+      <label for="inputUrl">Ollama API 地址</label>
+      <input type="text" id="inputUrl" placeholder="http://127.0.0.1:11434/api/generate" />
+    </div>
+    <div class="config-item">
+      <label for="inputModel">模型名称</label>
+      <input type="text" id="inputModel" placeholder="qwen3.5:4b" />
+    </div>
+    <div class="config-actions">
+      <button id="btnSave" class="btn btn-save">💾 保存</button>
+      <button id="btnCancel" class="btn btn-cancel">取消</button>
+    </div>
+  </div>
+
+  <div id="status" class="status"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
